@@ -11,7 +11,7 @@
     <script src="https://3d.io/releases/3dio-js/1.0.x-beta/3dio.min.js"></script>
 </head>
 
-<body onclick="startVideo()">
+<body ontouchend="startVideo()">
     <a-scene three-ar vr-mode-ui="enabled:false" id="scene">
         <a-asset>
             <video autoplay id="ground"></video>
@@ -61,10 +61,11 @@
         function startVideo() {
             var sphere = document.getElementById('plane');
             // sphere.setAttribute('src', '#ground');
-
+            var xPos = event.clientX;
+            var yPos = event.clientY;
             let cylinder = document.createElement("a-cylinder");
             cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
-            cylinder.setAttribute("position", "0 0.3125 -1.25");
+            cylinder.setAttribute("position", xPos + " " + yPos + " -1.25");
             cylinder.setAttribute("radius", "1.25");
             cylinder.setAttribute("color", "#EF2D5E");
 
