@@ -14,12 +14,8 @@
 <body onclick="startVideo()">
     <a-scene three-ar vr-mode-ui="enabled:false" id="scene">
         <a-asset>
-
             <video autoplay id="ground"></video>
         </a-asset>
-        <a-camera position="0 8 0" cursor="fuse: false; rayOrigin: mouse;" light="intensity:1" id="aCamera">
-        </a-camera>
-
         <!-- <a-sphere id="sphere" scale="0.25 0.25 0.25" position="0 0.3125 -1.25" radius="1.25" color="#EF2D5E" shadow>
         </a-sphere> -->
         <a-plane id="plane" position="0 0 -1" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
