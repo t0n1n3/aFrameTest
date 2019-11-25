@@ -63,9 +63,12 @@
             // sphere.setAttribute('src', '#ground');
             var xPos = event.changedTouches[0].clientX;
             var yPos = event.changedTouches[0].clientY;
+            var pos = `${xPos} ${yPos} -1.25`;
+            console.log(pos);
+            console.log(typeof pos);
             let cylinder = document.createElement("a-cylinder");
             cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
-            cylinder.setAttribute("position", `${xPos} ${yPos} -1.25`);
+            cylinder.setAttribute("position", pos);
             cylinder.setAttribute("radius", "1.25");
             cylinder.setAttribute("color", "#EF2D5E");
 
