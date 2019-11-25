@@ -9,12 +9,7 @@ AFRAME.registerComponent('three-ar', {
     },
 
     tick: function (t, dt) {
-        if (!this.arDisplay || !this.arDisplay.getFrameData) {
-
-            var acc = new Accelerometer();
-            console.log(acc);
-            return;
-        }
+        if (!this.arDisplay || !this.arDisplay.getFrameData) { return; }
 
         // If we have an ARView, render it.
         if (this.arView) { this.arView.render(); }
@@ -52,6 +47,7 @@ AFRAME.registerComponent('three-ar', {
 
         var acc = new Accelerometer();
         console.log(acc);
+
 
         // Apply the projection matrix.
         // Can use either left or right projection matrix; pick left for now.
