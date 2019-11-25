@@ -66,6 +66,8 @@
             var pos = `${xPos} ${yPos} -1.25`;
             console.log(pos);
             console.log(typeof pos);
+            // cylinder.setAttribute("position", "0 0.3125 -1.25");
+
             let cylinder = document.createElement("a-cylinder");
             cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
             cylinder.setAttribute("position", pos);
@@ -73,7 +75,7 @@
             cylinder.setAttribute("color", "#EF2D5E");
 
             document.getElementsByTagName("a-scene")[0].appendChild(cylinder)
-
+            document.getElementsByTagName('a-scene')[0].flushToDOM();
         }
 
 
