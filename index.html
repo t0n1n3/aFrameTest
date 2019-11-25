@@ -24,10 +24,11 @@
         let alternatives;
         let counter = 0;
         // var 
+        var acc = new Accelerometer();
         function update(stream) {
             document.querySelector('video').src = stream.url;
+            console.log(acc);
         }
-
 
         const constraints = {
             video: true
