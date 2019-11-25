@@ -45,6 +45,9 @@ AFRAME.registerComponent('three-ar', {
             z: THREE.Math.RAD2DEG * this.poseEuler.z
         });
 
+        var acc = new Accelerometer();
+        console.log(acc);
+
         // Apply the projection matrix.
         // Can use either left or right projection matrix; pick left for now.
         camera.projectionMatrix.fromArray(this.frameData.leftProjectionMatrix);
