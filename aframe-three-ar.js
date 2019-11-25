@@ -71,7 +71,7 @@ AFRAME.registerComponent('three-ar', {
             // Take over the scene camera, if so directed.
             // But wait a tick, because otherwise injected camera will not be present.
             if (self.data.takeOverCamera) {
-              setTimeout(function () { self.takeOverCamera(scene.camera); });
+                setTimeout(function () { self.takeOverCamera(scene.camera); });
             }
 
             // Modify the scene renderer to allow ARView video passthrough.
