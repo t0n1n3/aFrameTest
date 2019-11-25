@@ -24,6 +24,25 @@
         let alternatives;
         let counter = 0;
         // var 
+        if (navigator.permissions) {
+            // https://w3c.github.io/orientation-sensor/#model
+            Promise.all([navigator.permissions.query({ name: "accelerometer" }),
+            navigator.permissions.query({ name: "magnetometer" }),
+            navigator.permissions.query({ name: "gyroscope" })])
+                .then(results => {
+                    if (results.every(result => result.state === "granted")) {
+                        initSensor();
+                    } else {
+                        console.log("Permission to use sensor was denied.");
+                    }
+                }).catch(err => {
+                    console.log("Integration with Permissions API is not enabled, still try to start app.");
+                    initSensor();
+                });
+        } else {
+            console.log("No Permissions API, still try to start app.");
+            initSensor();
+        }
         var acc = new Accelerometer();
         function update(stream) {
             document.querySelector('video').src = stream.url;
