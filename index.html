@@ -48,7 +48,7 @@
             });
 
         function startVideo() {
-            var sphere = document.getElementById('sphere');
+            var sphere = document.getElementsByTagName('canvas')[0];
             sphere.setAttribute('src', '#ground');
 
             let cylinder = document.createElement("a-cylinder");
