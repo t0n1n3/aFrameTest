@@ -12,7 +12,7 @@
 </head>
 
 <body onclick="startVideo()">
-    <a-scene three-ar vr-mode-ui="enabled:false">
+    <a-scene three-ar vr-mode-ui="enabled:false" id="scene">
         <a-asset>
 
             <video autoplay id="ground"></video>
@@ -47,7 +47,7 @@
             });
 
         function startVideo() {
-            var sphere = document.getElementById('plane');
+            var sphere = document.getElementById('scene');
             sphere.setAttribute('src', '#ground');
 
             let cylinder = document.createElement("a-cylinder");
