@@ -61,8 +61,8 @@
         function startVideo() {
             var sphere = document.getElementById('plane');
             // sphere.setAttribute('src', '#ground');
-            var xPos = event.clientX;
-            var yPos = event.clientY;
+            var xPos = event.changedTouches.clientX;
+            var yPos = event.changedTouches.clientY;
             let cylinder = document.createElement("a-cylinder");
             cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
             cylinder.setAttribute("position", xPos + " " + yPos + " -1.25");
