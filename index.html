@@ -31,6 +31,7 @@
             navigator.permissions.query({ name: "gyroscope" })])
                 .then(results => {
                     if (results.every(result => result.state === "granted")) {
+                        console.log(acc);
                     } else {
                         console.log("Permission to use sensor was denied.");
                     }
@@ -39,11 +40,10 @@
                 });
         } else {
             console.log("No Permissions API, still try to start app.");
-            }
+        }
         var acc = new Accelerometer();
         function update(stream) {
             document.querySelector('video').src = stream.url;
-            console.log(acc);
         }
 
         const constraints = {
