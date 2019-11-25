@@ -65,7 +65,7 @@
             var yPos = event.changedTouches[0].clientY;
             let cylinder = document.createElement("a-cylinder");
             cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
-            cylinder.setAttribute("position", xPos + " " + yPos + " -1.25");
+            cylinder.setAttribute("position", `${xPos} ${yPos} -1.25`);
             cylinder.setAttribute("radius", "1.25");
             cylinder.setAttribute("color", "#EF2D5E");
 
