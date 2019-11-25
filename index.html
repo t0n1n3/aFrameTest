@@ -21,8 +21,7 @@
 
         <a-sphere id="sphere" scale="0.25 0.25 0.25" position="0 0.3125 -1.25" radius="1.25" color="#EF2D5E" shadow>
         </a-sphere>
-        <a-plane scale="0.25 0.25 0.25" position="0 0 -1" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"
-            shadow></a-plane>
+        <a-plane id="plane" position="0 0 -1" rotation="-90 0 0" width="4" height="4" color="#7BC8A4" shadow></a-plane>
     </a-scene>
     <script>
         let alternatives;
@@ -48,7 +47,7 @@
             });
 
         function startVideo() {
-            var sphere = document.getElementsByTagName('canvas')[0];
+            var sphere = document.getElementById('plane');
             sphere.setAttribute('src', '#ground');
 
             let cylinder = document.createElement("a-cylinder");
