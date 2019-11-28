@@ -41,6 +41,7 @@
         } else {
             console.log("No Permissions API, still try to start app.");
         }
+
         function update(stream) {
             document.querySelector('video').src = stream.url;
         }
@@ -60,7 +61,7 @@
             });
 
         function startVideo() {
-            var sphere = document.getElementById('scene');
+            var sphere = document.getElementById('plane');
             sphere.setAttribute('src', '#ground');
 
             var xPos = event.changedTouches[0].clientX;
