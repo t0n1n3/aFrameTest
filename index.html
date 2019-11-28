@@ -59,6 +59,7 @@
 
         navigator.mediaDevices.getUserMedia(hdConstraints).
             then((stream) => {
+                console.log(stream);
                 video.srcObject = stream
             });
 
