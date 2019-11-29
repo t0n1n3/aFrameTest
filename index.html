@@ -5,112 +5,74 @@
     <meta charset="utf-8">
     <title>three.ar.js</title>
     <meta name="description" content="three.ar.js">
-    <!-- <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script> -->
-    <!-- <script src="https://rawgit.com/google-ar/three.ar.js/master/dist/three.ar.js"></script> -->
-    <!-- <script src="./aframe-three-ar.js"></script> -->
-    <!-- <script src="https://3d.io/releases/3dio-js/1.0.x-beta/3dio.min.js"></script> -->
+    <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
+    <script src="https://rawgit.com/google-ar/three.ar.js/master/dist/three.ar.js"></script>
+    <script src="./aframe-three-ar.js"></script>
+    <script src="https://3d.io/releases/3dio-js/1.0.x-beta/3dio.min.js"></script>
 </head>
 
-<body>
-    <video autoplay id="ground"></video>
+<body ontouchend="startVideo()">
+    <a-scene vr-mode-ui="enabled:false" id="scene">
+        <a-asset>
+            <video autoplay id="ground"></video>
+        </a-asset>
+        <!-- <a-sphere id="sphere" scale="0.25 0.25 0.25" position="0 0.3125 -1.25" radius="1.25" color="#EF2D5E" shadow>
+        </a-sphere> -->
+        <!-- <a-plane id="plane" position="0 0 -1" rotation="-90 0 0" width="4" height="4" shadow></a-plane> -->
+        <a-videosphere id="videoSphere"></a-videosphere>
 
+        <a-entity id="dynamic-cylinder"></a-entity>
+    </a-scene>
     <script>
         let alternatives;
         let counter = 0;
 
-        // function update(stream) {
-        //     document.querySelector('video').src = stream.url;
-        // }
 
-        // const constraints = {
-        //     video: true
-        // };
+        function update(stream) {
+            document.querySelector('video').src = stream.url;
+        }
 
-        // const video = document.querySelector('video');
-        // const hdConstraints = {
-        //     video: { width: { min: 1280 }, height: { min: 720 } }
-        // };
-
-        // navigator.mediaDevices.getUserMedia(hdConstraints).
-        //     then((stream) => {
-        //         console.log(stream);
-        //         video.srcObject = stream
-        //     });
-
-        /**
-         * 
-         * 
-         */
-        var video = document.querySelector('video');
-        var constraints = window.constraints = {
-            audio: false,
+        const constraints = {
             video: true
         };
-        var errorElement = document.querySelector('#errorMsg');
 
-        navigator.mediaDevices.getUserMedia(constraints)
-            .then(function (stream) {
-                var videoTracks = stream.getVideoTracks();
-                console.log('Got stream with constraints:', constraints);
-                console.log('Using video device: ' + videoTracks[0].label);
-                stream.onremovetrack = function () {
-                    console.log('Stream ended');
-                };
-                window.stream = stream; // make variable available to browser console
-                video.srcObject = stream;
-            })
-            .catch(function (error) {
-                if (error.name === 'ConstraintNotSatisfiedError') {
-                    errorMsg('The resolution ' + constraints.video.width.exact + 'x' +
-                        constraints.video.width.exact + ' px is not supported by your device.');
-                } else if (error.name === 'PermissionDeniedError') {
-                    errorMsg('Permissions have not been granted to use your camera and ' +
-                        'microphone, you need to allow the page access to your devices in ' +
-                        'order for the demo to work.');
-                }
-                errorMsg('getUserMedia error: ' + error.name, error);
+        const video = document.querySelector('video');
+        const hdConstraints = {
+            video: { width: { min: 1280 }, height: { min: 720 } }
+        };
+
+        navigator.mediaDevices.getUserMedia(hdConstraints).
+            then((stream) => {
+                console.log(stream);
+                video.srcObject = stream
             });
 
-        function errorMsg(msg, error) {
-            errorElement.innerHTML += '<p>' + msg + '</p>';
-            if (typeof error !== 'undefined') {
-                console.error(error);
-            }
+        function startVideo() {
+            var sphere = document.getElementById('videoSphere');
+            sphere.setAttribute('src', '#ground');
+
+            var xPos = event.changedTouches[0].clientX;
+            var yPos = event.changedTouches[0].clientY;
+            var pos = `${xPos} ${yPos} -1.25`;
+            console.log(pos);
+            console.log(typeof pos);
+            // cylinder.setAttribute("position", "0 0.3125 -1.25");
+            // var position = this.el.getAttribute("position");
+            let cylinder = document.createElement("a-cylinder");
+            cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
+            cylinder.setAttribute("position", pos);
+            cylinder.setAttribute("radius", "1.25");
+            cylinder.setAttribute("color", "#EF2D5E");
+
+            cylinder.components.position.x = xPos;
+            cylinder.components.position.y = yPos;
+            cylinder.components.position.z = -1.25;
+
+            document.getElementsByTagName("a-scene")[0].appendChild(cylinder)
+            cylinder.components.position.flushToDOM(true);
+
+
         }
-        /**
-         *
-         *
-         *
-         */
-
-
-
-        // function startVideo() {
-        //     var sphere = document.getElementById('videoSphere');
-        //     sphere.setAttribute('src', '#ground');
-
-        //     var xPos = event.changedTouches[0].clientX;
-        //     var yPos = event.changedTouches[0].clientY;
-        //     var pos = `${xPos} ${yPos} -1.25`;
-        //     console.log(pos);
-        //     console.log(typeof pos);
-        //     // cylinder.setAttribute("position", "0 0.3125 -1.25");
-        //     // var position = this.el.getAttribute("position");
-        //     let cylinder = document.createElement("a-cylinder");
-        //     cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
-        //     cylinder.setAttribute("position", pos);
-        //     cylinder.setAttribute("radius", "1.25");
-        //     cylinder.setAttribute("color", "#EF2D5E");
-
-        //     cylinder.components.position.x = xPos;
-        //     cylinder.components.position.y = yPos;
-        //     cylinder.components.position.z = -1.25;
-
-        //     document.getElementsByTagName("a-scene")[0].appendChild(cylinder)
-        //     cylinder.components.position.flushToDOM(true);
-
-
-        // }
 
 
     </script>
