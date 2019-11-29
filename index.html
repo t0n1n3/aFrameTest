@@ -18,17 +18,15 @@
         </a-sphere> -->
         <!-- <a-plane id="plane" position="0 0 -1" rotation="-90 0 0" width="4" height="4" shadow></a-plane> -->
         <a-sky id="sky"></a-sky>
-
-        <a-entity id="dynamic-cylinder"></a-entity>
     </a-scene>
     <script>
-        let alternatives;
-        let counter = 0;
+        // let alternatives;
+        // let counter = 0;
 
 
-        function update(stream) {
-            document.querySelector('video').src = stream.url;
-        }
+        // function update(stream) {
+        //     document.querySelector('video').src = stream.url;
+        // }
 
         const constraints = {
             video: true
@@ -50,25 +48,25 @@
             var sphere = document.getElementById('sky');
             sphere.setAttribute('src', '#ground');
 
-            var xPos = event.changedTouches[0].clientX;
-            var yPos = event.changedTouches[0].clientY;
-            var pos = `${xPos} ${yPos} -1.25`;
-            console.log(pos);
-            console.log(typeof pos);
-            // cylinder.setAttribute("position", "0 0.3125 -1.25");
-            // var position = this.el.getAttribute("position");
-            let cylinder = document.createElement("a-cylinder");
-            cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
-            cylinder.setAttribute("position", pos);
-            cylinder.setAttribute("radius", "1.25");
-            cylinder.setAttribute("color", "#EF2D5E");
+            // var xPos = event.changedTouches[0].clientX;
+            // var yPos = event.changedTouches[0].clientY;
+            // var pos = `${xPos} ${yPos} -1.25`;
+            // console.log(pos);
+            // console.log(typeof pos);
+            // // cylinder.setAttribute("position", "0 0.3125 -1.25");
+            // // var position = this.el.getAttribute("position");
+            // let cylinder = document.createElement("a-cylinder");
+            // cylinder.setAttribute("scale", 0.25 + " " + 0.25 + " " + 0.25);
+            // cylinder.setAttribute("position", pos);
+            // cylinder.setAttribute("radius", "1.25");
+            // cylinder.setAttribute("color", "#EF2D5E");
 
-            cylinder.components.position.x = xPos;
-            cylinder.components.position.y = yPos;
-            cylinder.components.position.z = -1.25;
+            // cylinder.components.position.x = xPos;
+            // cylinder.components.position.y = yPos;
+            // cylinder.components.position.z = -1.25;
 
-            document.getElementsByTagName("a-scene")[0].appendChild(cylinder)
-            cylinder.components.position.flushToDOM(true);
+            // document.getElementsByTagName("a-scene")[0].appendChild(cylinder)
+            // cylinder.components.position.flushToDOM(true);
 
 
         }
