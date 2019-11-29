@@ -26,42 +26,73 @@
     <script>
         let alternatives;
         let counter = 0;
-        // var 
-        if (navigator.permissions) {
-            // https://w3c.github.io/orientation-sensor/#model
-            Promise.all([navigator.permissions.query({ name: "accelerometer" }),
-            navigator.permissions.query({ name: "magnetometer" }),
-            navigator.permissions.query({ name: "gyroscope" })])
-                .then(results => {
-                    if (results.every(result => result.state === "granted")) {
-                    } else {
-                        console.log("Permission to use sensor was denied.");
-                    }
-                }).catch(err => {
-                    console.log("Integration with Permissions API is not enabled, still try to start app.");
-                });
-        } else {
-            console.log("No Permissions API, still try to start app.");
-        }
 
         function update(stream) {
             document.querySelector('video').src = stream.url;
         }
 
-        const constraints = {
+        // const constraints = {
+        //     video: true
+        // };
+
+        // const video = document.querySelector('video');
+        // const hdConstraints = {
+        //     video: { width: { min: 1280 }, height: { min: 720 } }
+        // };
+
+        // navigator.mediaDevices.getUserMedia(hdConstraints).
+        //     then((stream) => {
+        //         console.log(stream);
+        //         video.srcObject = stream
+        //     });
+
+        /**
+         * 
+         * 
+         */
+        var video = document.querySelector('video');
+        var constraints = window.constraints = {
+            audio: false,
             video: true
         };
+        var errorElement = document.querySelector('#errorMsg');
 
-        const video = document.querySelector('video');
-        const hdConstraints = {
-            video: { width: { min: 1280 }, height: { min: 720 } }
-        };
-
-        navigator.mediaDevices.getUserMedia(hdConstraints).
-            then((stream) => {
-                console.log(stream);
-                video.srcObject = stream
+        navigator.mediaDevices.getUserMedia(constraints)
+            .then(function (stream) {
+                var videoTracks = stream.getVideoTracks();
+                console.log('Got stream with constraints:', constraints);
+                console.log('Using video device: ' + videoTracks[0].label);
+                stream.onremovetrack = function () {
+                    console.log('Stream ended');
+                };
+                window.stream = stream; // make variable available to browser console
+                video.srcObject = stream;
+            })
+            .catch(function (error) {
+                if (error.name === 'ConstraintNotSatisfiedError') {
+                    errorMsg('The resolution ' + constraints.video.width.exact + 'x' +
+                        constraints.video.width.exact + ' px is not supported by your device.');
+                } else if (error.name === 'PermissionDeniedError') {
+                    errorMsg('Permissions have not been granted to use your camera and ' +
+                        'microphone, you need to allow the page access to your devices in ' +
+                        'order for the demo to work.');
+                }
+                errorMsg('getUserMedia error: ' + error.name, error);
             });
+
+        function errorMsg(msg, error) {
+            errorElement.innerHTML += '<p>' + msg + '</p>';
+            if (typeof error !== 'undefined') {
+                console.error(error);
+            }
+        }
+        /**
+         * 
+         * 
+         * 
+         */
+
+
 
         function startVideo() {
             var sphere = document.getElementById('videoSphere');
