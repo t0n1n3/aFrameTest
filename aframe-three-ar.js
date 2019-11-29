@@ -9,7 +9,11 @@ AFRAME.registerComponent('three-ar', {
     },
 
     tick: function (t, dt) {
-        if (!this.arDisplay || !this.arDisplay.getFrameData) { return; }
+        if (!this.arDisplay || !this.arDisplay.getFrameData) {
+            console.log(this.arCamera);
+            debugger;
+            return;
+        }
 
         // If we have an ARView, render it.
         if (this.arView) { this.arView.render(); }
@@ -44,10 +48,6 @@ AFRAME.registerComponent('three-ar', {
             y: THREE.Math.RAD2DEG * this.poseEuler.y,
             z: THREE.Math.RAD2DEG * this.poseEuler.z
         });
-
-        var acc = new Accelerometer();
-        console.log(acc);
-
 
         // Apply the projection matrix.
         // Can use either left or right projection matrix; pick left for now.
