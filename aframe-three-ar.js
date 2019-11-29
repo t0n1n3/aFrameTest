@@ -9,11 +9,7 @@ AFRAME.registerComponent('three-ar', {
     },
 
     tick: function (t, dt) {
-        if (!this.arDisplay || !this.arDisplay.getFrameData) {
-            console.log(this.arCamera);
-            debugger;
-            return;
-        }
+        if (!this.arDisplay || !this.arDisplay.getFrameData) { return; }
 
         // If we have an ARView, render it.
         if (this.arView) { this.arView.render(); }
