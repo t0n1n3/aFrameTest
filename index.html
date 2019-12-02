@@ -17,6 +17,7 @@
         <!-- <video autoplay='true' id="ground"></video> -->
     </a-scene>
     <script>
+        const aScene = document.getElementById('scene');
         const constraints = {
             video: true
         };
@@ -31,13 +32,14 @@
         navigator.mediaDevices.getUserMedia(constraints).
             then((stream) => {
                 console.log(stream);
-                startVideo();
                 video.srcObject = stream
+                startVideo();
             });
 
         function startVideo() {
             video.setAttribute('autoplay', 'true');
             video.setAttribute('src', '#ground');
+            aScene.appendChild(video);
         }
     </script>
 </body>
