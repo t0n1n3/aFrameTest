@@ -14,14 +14,16 @@
         <a-asset>
         </a-asset>
         <a-sky id="sky"></a-sky>
-        <video autoplay='true' id="ground"></video>
+        <!-- <video autoplay='true' id="ground"></video> -->
     </a-scene>
     <script>
         const constraints = {
             video: true
         };
 
-        const video = document.querySelector('video');
+        // const video = document.querySelector('video');
+        var video = document.createElement('video');
+
         const hdConstraints = {
             video: { width: { min: 1280 }, height: { min: 720 } }
         };
@@ -29,12 +31,13 @@
         navigator.mediaDevices.getUserMedia(constraints).
             then((stream) => {
                 console.log(stream);
-                video.srcObject = stream
                 startVideo();
+                video.srcObject = stream
             });
 
         function startVideo() {
-            var sphere = document.getElementById('ground');
+
+            video.setAttribute('autoplay', 'true');
             sphere.setAttribute('src', '#ground');
         }
     </script>
