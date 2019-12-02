@@ -5,6 +5,13 @@
     <meta charset="utf-8">
     <title>three.ar.js</title>
     <meta name="description" content="three.ar.js">
+    <style>
+    .video-attributes {
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+    </style>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="./lib/aframe.js"></script>
 </head>
@@ -39,6 +46,7 @@
         function startVideo() {
             video.setAttribute('autoplay', 'true');
             video.setAttribute('src', '#ground');
+            video.setAttribute('class', 'video-attributes')
             aScene.appendChild(video);
         }
     </script>
