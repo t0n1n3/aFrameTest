@@ -26,7 +26,20 @@
             video: { width: { min: 1280 }, height: { min: 720 } }
         };
 
-        navigator.mediaDevices.getUserMedia(hdConstraints).
+        const constraints = window.constraints = {
+            audio: false,
+            video: true
+        };
+
+        navigator.mediaDevices.enumerateDevices()
+            .then(function (devices) {
+                devices.forEach(function (device) {
+                    console.log(device.kind + ": " + device.label +
+                        " id = " + device.deviceId);
+                });
+            })
+
+        navigator.mediaDevices.getUserMedia(constraints).
             then((stream) => {
                 console.log(stream);
                 video.srcObject = stream
