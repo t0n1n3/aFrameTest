@@ -10,36 +10,23 @@
 </head>
 
 <body>
-    <video autoplay id="ground"></video>
-    <!-- <a-scene vr-mode-ui="enabled:false" id="scene">
+    <a-scene vr-mode-ui="enabled:false" id="scene">
         <a-asset>
+            <video autoplay id="ground"></video>
         </a-asset>
         <a-sky id="sky"></a-sky>
-    </a-scene> -->
+    </a-scene>
     <script>
-        // const constraints = {
-        //     video: true
-        // };
+        const constraints = {
+            video: true
+        };
 
         const video = document.querySelector('video');
         const hdConstraints = {
             video: { width: { min: 1280 }, height: { min: 720 } }
         };
 
-        const constraints = window.constraints = {
-            audio: false,
-            video: true
-        };
-
-        navigator.mediaDevices.enumerateDevices()
-            .then(function (devices) {
-                devices.forEach(function (device) {
-                    console.log(device.kind + ": " + device.label +
-                        " id = " + device.deviceId);
-                });
-            })
-
-        navigator.mediaDevices.getUserMedia(constraints).
+        navigator.mediaDevices.getUserMedia(hdConstraints).
             then((stream) => {
                 console.log(stream);
                 video.srcObject = stream
