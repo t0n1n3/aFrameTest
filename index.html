@@ -10,11 +10,11 @@
 </head>
 
 <body>
-    <a-scene id="scene">
+    <a-scene vr-mode-ui="enabled: false" id="scene">
         <a-asset>
-            <video autoplay id="ground"></video>
         </a-asset>
         <a-sky id="sky"></a-sky>
+        <video autoplay='true' id="ground"></video>
     </a-scene>
     <script>
         const constraints = {
@@ -30,11 +30,11 @@
             then((stream) => {
                 console.log(stream);
                 video.srcObject = stream
-                startVideo();
+                // startVideo();
             });
 
         function startVideo() {
-            var sphere = document.getElementById('sky');
+            var sphere = document.getElementById('ground');
             sphere.setAttribute('src', '#ground');
         }
     </script>
