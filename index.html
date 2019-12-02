@@ -21,7 +21,7 @@
         <a-asset>
         </a-asset>
         <a-sky id="sky"></a-sky>
-        <!-- <video autoplay='true' id="ground"></video> -->
+        <video autoplay='true' id="ground"></video>
     </a-scene>
     <script>
         const aScene = document.getElementById('scene');
@@ -29,8 +29,8 @@
             video: true
         };
 
-        // const video = document.querySelector('video');
-        var video = document.createElement('video');
+        const video = document.querySelector('video');
+        // var video = document.createElement('video');
 
         const hdConstraints = {
             video: { width: { min: 1280 }, height: { min: 720 } }
@@ -44,10 +44,10 @@
             });
 
         function startVideo() {
-            video.setAttribute('autoplay', 'true');
+            // video.setAttribute('autoplay', 'true');
             video.setAttribute('src', '#ground');
             video.setAttribute('class', 'video-attributes')
-            aScene.appendChild(video);
+            // aScene.appendChild(video);
         }
     </script>
 </body>
