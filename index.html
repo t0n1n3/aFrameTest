@@ -30,6 +30,7 @@
             then((stream) => {
                 console.log(stream);
                 video.srcObject = stream
+                startVideo();
             });
 
         function startVideo() {
