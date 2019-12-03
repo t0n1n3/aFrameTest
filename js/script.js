@@ -33,7 +33,7 @@ function getStream() {
 
 function gotStream(stream) {
     videoElement.srcObject = stream;
-    document.getElementById('sky').setAttribute('src', '#ground');
+    document.getElementById('ground').setAttribute('src', '#ground');
 }
 
 function handleError(error) {
