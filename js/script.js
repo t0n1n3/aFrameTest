@@ -1,8 +1,6 @@
 
 var videoElement = document.querySelector('video');
-
 getStream().then(getDevices).then(gotDevices);
-
 function getDevices() {
     // AFAICT in Safari this only gets default devices until gUM is called :/
     return navigator.mediaDevices.enumerateDevices();
@@ -11,7 +9,6 @@ function getDevices() {
 function gotDevices(deviceInfos) {
     window.deviceInfos = deviceInfos; // make available to console
     console.log('Available input and output devices:', deviceInfos);
-
 }
 
 function getStream() {
@@ -39,3 +36,16 @@ function gotStream(stream) {
 function handleError(error) {
     console.error('Error: ', error);
 }
+
+class PlaceObject extends HTMLElement {
+    constructor() {
+        super();
+        document.addEventListener('click', (event) => {
+            console.log(event);
+        });
+    }
+
+}
+
+
+window.customElements.define('place-object', PlaceObject);
