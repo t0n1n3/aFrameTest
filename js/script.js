@@ -43,5 +43,9 @@ function handleError(error) {
 function addClickEvent() {
     aScene.addEventListener('click', (event) => {
         console.log(event);
+        var box = document.createElement('a-box');
+        box.setAttribute('position', '-1 0.5 -3');
+        box.setAttribute('rotation', '0 45 0');
+        box.setAttribute('color', '#4CC3D9');
     });
 }
