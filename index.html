@@ -6,11 +6,11 @@
     <title>three.ar.js</title>
     <meta name="description" content="three.ar.js">
     <style>
-    .video-attributes {
-        height: 100%;
-        width: 100%;
-        display: block;
-    }
+        .video-attributes {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
     </style>
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
     <script src="./lib/aframe.js"></script>
@@ -23,33 +23,8 @@
         <a-sky id="sky"></a-sky>
         <video autoplay='true' id="ground"></video>
     </a-scene>
-    <script>
-        const aScene = document.getElementById('scene');
-        const constraints = {
-            video: true
-        };
 
-        const video = document.querySelector('video');
-        // var video = document.createElement('video');
-
-        const hdConstraints = {
-            video: { width: { min: 1280 }, height: { min: 720 } }
-        };
-
-        navigator.mediaDevices.getUserMedia(constraints).
-            then((stream) => {
-                console.log(stream);
-                video.srcObject = stream
-                startVideo();
-            });
-
-        function startVideo() {
-            // video.setAttribute('autoplay', 'true');
-            video.setAttribute('src', '#ground');
-            video.setAttribute('class', 'video-attributes')
-            // aScene.appendChild(video);
-        }
-    </script>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
