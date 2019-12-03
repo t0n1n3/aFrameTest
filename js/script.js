@@ -47,5 +47,6 @@ function addClickEvent() {
         box.setAttribute('position', '-1 0.5 -3');
         box.setAttribute('rotation', '0 45 0');
         box.setAttribute('color', '#4CC3D9');
+        aScene.appendChild(box);
     });
 }
