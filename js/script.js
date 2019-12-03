@@ -1,5 +1,7 @@
 
 var videoElement = document.querySelector('video');
+var aScene = document.querySelector('a-scene');
+
 getStream().then(getDevices).then(gotDevices);
 function getDevices() {
     // AFAICT in Safari this only gets default devices until gUM is called :/
@@ -31,21 +33,15 @@ function getStream() {
 function gotStream(stream) {
     videoElement.srcObject = stream;
     document.getElementById('ground').setAttribute('src', '#ground');
+    addClickEvent();
 }
 
 function handleError(error) {
     console.error('Error: ', error);
 }
 
-class PlaceObject extends HTMLElement {
-    constructor() {
-        super();
-        document.addEventListener('click', (event) => {
-            console.log(event);
-        });
-    }
-
+function addClickEvent() {
+    aScene.addEventListener('click', (event) => {
+        console.log(event);
+    });
 }
-
-
-window.customElements.define('place-object', PlaceObject);

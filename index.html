@@ -16,9 +16,11 @@
 </head>
 
 <body>
-    <a-scene vr-mode-ui="enabled: false" id="scene" place-object>
+    <a-scene vr-mode-ui="enabled: false" id="scene">
         <a-asset>
         </a-asset>
+        <a-camera id="camera" look-controls="touchEnabled: false" position="0 4 10" camera="" rotation=""
+            wasd-controls=""></a-camera>
         <video autoplay='true' id="ground" style="display: block;"></video>
     </a-scene>
 
