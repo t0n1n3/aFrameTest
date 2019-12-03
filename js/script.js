@@ -32,7 +32,7 @@ function getStream() {
 
 function gotStream(stream) {
     videoElement.srcObject = stream;
-    document.getElementById('ground').setAttribute('src', '#ground');
+    document.getElementById('camera').setAttribute('src', '#ground');
     addClickEvent();
 }
 
